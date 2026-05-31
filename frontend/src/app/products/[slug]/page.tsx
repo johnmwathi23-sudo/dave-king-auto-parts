@@ -1,5 +1,4 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
-import { cookies } from "next/headers"
+import { createClient } from "@/lib/supabase"
 import { notFound } from "next/navigation"
 
 interface Product {
@@ -21,7 +20,7 @@ export default async function ProductPage({
 }: {
   params: { slug: string }
 }) {
-  const supabase = createServerComponentClient({ cookies })
+  const supabase = createClient()
 
   const { data: product } = await supabase
     .from("products")
